@@ -1,42 +1,30 @@
-import { fromEvent } from "rxjs";
+import { fromEvent } from "rxjs"
 
+const lettersRow = document.getElementsByClassName('letters-row')
 const onKeyDown$ = fromEvent(document, 'keydown')
-const observableKey = {
+let letterIndex = 0
+let letterRowIndex = 0
+
+
+const insertLetter = {
   next: (event) => {
+    const pressedKey = event.key
     console.log(event.key)
+    if( pressedKey.length === 1 && pressedKey.match(/[a-z]/i )) {
+      let letterBox = Array.from(lettersRow)[letterRowIndex].children[letterIndex]
+      letterBox.textContent = pressedKey
+      letterBox.classList.add('filled-letter')
+      letterIndex++
+      console.log(letterBox)
+    } else if ( pressedKey === 'Backspace') {
+      letterIndex--
+        let letterBox = Array.from(lettersRow)[letterRowIndex].children[letterIndex]
+        letterBox.textContent = ''
+        letterBox.classList.remove('filled-letter')
+    }
   }
 }
 
-onKeyDown$.subscribe(observableKey)
+onKeyDown$.subscribe(insertLetter)
 
 
-
-
-
-//Ejemplo de clase
-
-// import { Observable } from "rxjs";
-
-// // agregar $ al final
-// const observableAlfa$ = new Observable(suscriber => {
-//   suscriber.next(10);
-//   suscriber.next(2);
-//   suscriber.next(3);
-//   suscriber.next(1);
-//   suscriber.complete() //observable finished
-//   //suscriber.error('Error en el flujo') //observable finished
-// })
-
-// const observador = {
-//   next: (value) => {
-//     console.log('Value', value);
-//   },
-//   complete: () => {
-//     console.info('Finished');
-//   },
-//   error: (error) => {
-//     console.error(error)
-//   }
-// }
-
-// observableAlfa$.subscribe(observador);
