@@ -64,11 +64,14 @@ body {
   border: 0.1rem solid var(--yellow);
 }
 
-.message-container {
+.message__container {
   display: flex;
   align-items: center;
   flex-direction: column;
   font-size: 1.3rem;
+  width: 400px;
+  height: 180px;
+  margin: 0 auto;
 }
 
 .letters-row {
@@ -77,17 +80,17 @@ body {
   justify-content: center;
 }
 
-.message-text {
+.message {
   color: white;
 }
 
-.restart-container {
+.restart__container {
   display: flex;
   justify-content: center;
   align-self: start;
 }
 
-.restart-button {
+.restart__button {
   cursor: pointer;
   background-color: var(--green);
   border-radius: 10px;
